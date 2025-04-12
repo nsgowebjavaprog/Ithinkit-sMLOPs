@@ -1,41 +1,44 @@
-requirements_dev.txt we use for the testing
-It makes it easier to install and manage dependencies for development and testing, separate from the dependencies required for production.
+**requirements_dev.txt**  
+We use it for testing.  
+It makes it easier to install and manage dependencies for development and testing, separate from the dependencies required for production.  
 
-difference between requirements_dev.txt and requirements.txt
-requirements.txt is used to specify the dependencies required to run the production code of a Python project, while requirements_dev.txt is used to specify the dependencies required for development and testing purposes.
+**difference between requirements_dev.txt and requirements.txt**  
+**requirements.txt** is used to specify the dependencies required to run the production code of a Python project, while **requirements_dev.txt** is used to specify the dependencies required for development and testing purposes.  
 
-tox.ini
-We use if for the testing in the python package testing against different version of the python
+**tox.ini**  
+We use it for testing in the Python package, testing against different versions of Python.  
 
-how tox works tox enviornment creation
-Install depedencies and packages
-Run commands
-Its a combination of the (virtualenvwrapper and makefile)
-It creates a .tox
-pyproject.toml
-it is being used for configuration the python project it is a alternative of the setup.cfg file. its containts configuration related to the build system such as the build tool used package name version author license and dependencies
+**how tox works (tox environment creation)**  
+- Install dependencies and packages  
+- Run commands  
+- It's a combination of **virtualenvwrapper** and **makefile**  
+- It creates a **.tox** folder  
 
-setup.cfg
-In summary, setup.cfg is used by setuptools to configure the packaging and installation of a Python projec
+**pyproject.toml**  
+It is used for configuring the Python project. It is an alternative to the **setup.cfg** file. It contains configuration related to the build system, such as the build tool used, package name, version, author, license, and dependencies.  
 
-Testing python application
-types of testing
+**setup.cfg**  
+In summary, **setup.cfg** is used by **setuptools** to configure the packaging and installation of a Python project.  
 
-Automated testing
-Manual testing
-Mode of testing
+**Testing Python application**  
 
-Unit testing
-Integration tests
-Testing frameworks
+**types of testing**  
+- **Automated testing**  
+- **Manual testing**  
 
-pytest
-unittest
-robotframework
-selenium
-behave
-doctest
-check with the code style formatting and syntax(coding standard)
-pylint
-flake8(it is best because it containt 3 library pylint pycodestyle mccabe)
-pycodestyle
+**Mode of testing**  
+- **Unit testing**  
+- **Integration tests**  
+
+**Testing frameworks**  
+- **pytest**  
+- **unittest**  
+- **robotframework**  
+- **selenium**  
+- **behave**  
+- **doctest**  
+
+**Check with the code style formatting and syntax (coding standards)**  
+- **pylint**  
+- **flake8** (It is best because it contains 3 libraries: pylint, pycodestyle, and mccabe)  
+- **pycodestyle**
