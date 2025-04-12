@@ -1,6 +1,2 @@
-# Data-Pipeline
-
-# Data evaluation, tesing
-
-# Deploy, Monitoring, etc.
+1st --> create a template.py
 
