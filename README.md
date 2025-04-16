@@ -51,6 +51,6 @@ In summary, **setup.cfg** is used by **setuptools** to configure the packaging a
 
 
 
-test using python <copy relative path >
+********  test using python <copy relative path >
 
-for mlflow needed the run-->   mlflow ui
+********  for mlflow needed the run-->   mlflow ui
