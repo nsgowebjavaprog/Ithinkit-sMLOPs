@@ -2,26 +2,19 @@ import logging
 import os
 from datetime import datetime
 
-def setup_logging():
-    log_file = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
-    log_dir = os.path.join(os.getcwd(), "logs")
-    os.makedirs(log_dir, exist_ok=True)
-    log_file_path = os.path.join(log_dir, log_file)
+LOG_FILE=f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
 
-    logging.basicConfig(
-        level=logging.INFO,
-        filename=log_file_path,
-        format="[%(asctime)s] %(lineno)d %(name)s - %(levelname)s - %(message)s",
-        filemode='a'
-    )
+log_path=os.path.join(os.getcwd(),"logs")
 
-    console_handler = logging.StreamHandler()
-    console_handler.setLevel(logging.INFO)
-    formatter = logging.Formatter("[%(asctime)s] %(lineno)d %(name)s - %(levelname)s - %(message)s")
-    console_handler.setFormatter(formatter)
-    logging.getLogger().addHandler(console_handler)
+os.makedirs(log_path,exist_ok=True)
 
-if __name__ == "__main__":
-    setup_logging()
-    logger = logging.getLogger(__name__)
-    logger.info("Test log message")
+LOG_FILEPATH=os.path.join(log_path,LOG_FILE)
+
+
+logging.basicConfig(level=logging.INFO, 
+                    filename=LOG_FILEPATH,
+                    format="[%(asctime)s] %(lineno)d %(name)s - %(levelname)s - %(message)s"
+                    
+)
+            #[2024-01-10 15:57:26,997] 6 root - INFO -  this my second tesgting
+
