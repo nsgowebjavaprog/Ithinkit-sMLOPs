@@ -4,21 +4,100 @@
     <meta charset="UTF-8" />
     <title>Hey, This is NS Loni</title>
     <style>
+      /* Background animation */
       body {
-        font-family: Arial, sans-serif;
-        background-color: yellow;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(-45deg, #f9d423, #ff4e50, #ff6a00, #f83600);
+        background-size: 400% 400%;
+        animation: gradientBG 10s ease infinite;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
         text-align: center;
-        padding-top: 100px;
-        color: red;
       }
 
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Heading animation */
       h1 {
-        font-size: 48px;
+        font-size: 3rem;
+        margin: 20px;
+        animation: fadeInUp 2s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Glowing text effect */
+      h1.glow {
+        color: #fff;
+        text-shadow: 0 0 5px #fff, 0 0 10px #ff6a00, 0 0 20px #ff6a00,
+          0 0 40px #f83600, 0 0 60px #f83600;
+      }
+
+      /* Optional - floating animation */
+      .float {
+        animation: float 4s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      /* Navigation link to form.html */
+      .nav-link {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 18px;
+        color: white;
+        text-decoration: none;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 8px 12px;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease;
+      }
+
+      .nav-link:hover {
+        background-color: rgba(0, 0, 0, 0.8);
       }
     </style>
   </head>
   <body>
-    <h1>It's a Data Science and MLOps Project</h1>
-    <h1>Hey, this is NS Loni</h1>
+    <!-- Navigation link -->
+    <a href="form.html" class="nav-link">Go to Form</a>
+
+    <h1 class="glow float">It's a Data Science and MLOps Project</h1>
+    <h1 class="glow float">Hey, this is NS Loni</h1>
   </body>
 </html>

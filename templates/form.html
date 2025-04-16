@@ -1,106 +1,356 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Diamond Price Predictor</title>
+    <style>
+      /* Keyframe animations */
+      @keyframes backgroundShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes slideInLeft {
+        0% {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+        100% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInScale {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Reset & Base styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(-45deg, #ff6a00, #ee0979, #00c3ff);
+        background-size: 600% 600%;
+        animation: backgroundShift 20s ease infinite;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* Header */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 15px 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: #ee0979;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #fff;
+        text-align: center;
+        padding: 15px;
+        font-size: 14px;
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Layout container */
+      .content {
+        display: flex;
+        flex: 1;
+        margin-top: 80px;
+        padding: 20px;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 250px;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 20px;
+        border-radius: 12px;
+        margin-right: 20px;
+        animation: slideInLeft 1s ease;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+        z-index: 900;
+      }
+
+      .sidebar h3 {
+        color: #ee0979;
+        margin-bottom: 15px;
+      }
+
+      .sidebar ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .sidebar li {
+        margin-bottom: 15px;
+        font-size: 16px;
+        color: #333;
+      }
+
+      /* Form container */
+      .form-container {
+        background: white;
+        padding: 30px 25px;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        animation: fadeInScale 1s ease;
+      }
+
+      .form-container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #ee0979;
+      }
+
+      .form-group {
+        margin-bottom: 18px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 6px;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        transition: 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        border-color: #ee0979;
+        box-shadow: 0 0 8px rgba(238, 9, 121, 0.2);
+        outline: none;
+      }
+
+      input[type="submit"] {
+        background-color: #ee0979;
+        color: white;
+        font-size: 15px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        width: 100%;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #d1066f;
+        box-shadow: 0 0 12px rgba(238, 9, 121, 0.4);
+      }
+
+      /* Two-column form */
+      .form-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .form-column {
+        flex: 1;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .content {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .sidebar {
+          width: 90%;
+          margin-bottom: 20px;
+          position: relative;
+        }
+
+        .form-container {
+          width: 90%;
+        }
+
+        .form-row {
+          flex-direction: column;
+        }
+
+        .form-column {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
   <body>
-    <form action="{{url_for('predict_datapoint')}}" method="POST">
-      <div class="form-group">
-        <label for="carat">Carat:</label>
-        <input
-          type="text"
-          id="carat"
-          name="carat"
-          placeholder="Enter carat value (float)"
-        />
+    <header>Diamond Price Predictor</header>
+
+    <div class="content">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <h3>About the App</h3>
+        <ul>
+          <li>
+            <strong>Predict Diamond Prices</strong> based on 7 important
+            features.
+          </li>
+          <li>
+            <strong>Feature-Based Approach</strong> using Carat, Depth, Table,
+            and Dimensions (x, y, z).
+          </li>
+          <li>
+            <strong>Precision and Accuracy</strong> in predicting the price of
+            diamonds.
+          </li>
+          <li>
+            <strong>Highly Interactive</strong> and user-friendly interface for
+            easy input.
+          </li>
+          <li>
+            <strong>Real-time Predictions</strong> with fast performance and
+            smooth experience.
+          </li>
+        </ul>
       </div>
 
-      <div class="form-group">
-        <label for="depth">Depth:</label>
-        <input
-          type="text"
-          id="depth"
-          name="depth"
-          placeholder="Enter depth value (float)"
-        />
-      </div>
+      <!-- Form Container -->
+      <div class="form-container">
+        <h2>Predict Diamond Price</h2>
+        <form action="{{ url_for('predict_datapoint') }}" method="POST">
+          <div class="form-row">
+            <div class="form-column">
+              <div class="form-group">
+                <label for="carat">Carat</label>
+                <input
+                  type="text"
+                  id="carat"
+                  name="carat"
+                  placeholder="Carat (e.g. 0.7)"
+                />
+              </div>
 
-      <div class="form-group">
-        <label for="table">Table:</label>
-        <input
-          type="text"
-          id="table"
-          name="table"
-          placeholder="Enter table value (float)"
-        />
-      </div>
+              <div class="form-group">
+                <label for="depth">Depth</label>
+                <input
+                  type="text"
+                  id="depth"
+                  name="depth"
+                  placeholder="Depth (e.g. 60)"
+                />
+              </div>
 
-      <div class="form-group">
-        <label for="x">x:</label>
-        <input
-          type="text"
-          id="x"
-          name="x"
-          placeholder="Enter x value (float)"
-        />
-      </div>
+              <div class="form-group">
+                <label for="x">x (mm)</label>
+                <input type="text" id="x" name="x" placeholder="Length" />
+              </div>
+            </div>
 
-      <div class="form-group">
-        <label for="y">y:</label>
-        <input
-          type="text"
-          id="y"
-          name="y"
-          placeholder="Enter y value (float)"
-        />
-      </div>
+            <div class="form-column">
+              <div class="form-group">
+                <label for="table">Table</label>
+                <input
+                  type="text"
+                  id="table"
+                  name="table"
+                  placeholder="Table (e.g. 55)"
+                />
+              </div>
 
-      <div class="form-group">
-        <label for="z">z:</label>
-        <input
-          type="text"
-          id="z"
-          name="z"
-          placeholder="Enter z value (float)"
-        />
-      </div>
+              <div class="form-group">
+                <label for="y">y (mm)</label>
+                <input type="text" id="y" name="y" placeholder="Width" />
+              </div>
 
-      <div class="form-group">
-        <label for="cut">Cut:</label>
-        <select id="cut" name="cut">
-          <option value="Fair">Fair</option>
-          <option value="Good">Good</option>
-          <option value="Very Good">Very Good</option>
-          <option value="Premium">Premium</option>
-          <option value="Ideal">Ideal</option>
-        </select>
-      </div>
+              <div class="form-group">
+                <label for="z">z (mm)</label>
+                <input type="text" id="z" name="z" placeholder="Height" />
+              </div>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label for="color">Color:</label>
-        <select id="color" name="color">
-          <option value="D">D</option>
-          <option value="E">E</option>
-          <option value="F">F</option>
-          <option value="G">G</option>
-          <option value="H">H</option>
-          <option value="I">I</option>
-          <option value="J">J</option>
-        </select>
-      </div>
+          <div class="form-group">
+            <label for="cut">Cut</label>
+            <select id="cut" name="cut">
+              <option value="Fair">Fair</option>
+              <option value="Good">Good</option>
+              <option value="Very Good">Very Good</option>
+              <option value="Premium">Premium</option>
+              <option value="Ideal">Ideal</option>
+            </select>
+          </div>
 
-      <div class="form-group">
-        <label for="clarity">Clarity:</label>
-        <select id="clarity" name="clarity">
-          <option value="I1">I1</option>
-          <option value="SI2">SI2</option>
-          <option value="SI1">SI1</option>
-          <option value="VS2">VS2</option>
-          <option value="VS1">VS1</option>
-          <option value="VVS2">VVS2</option>
-          <option value="VVS1">VVS1</option>
-          <option value="IF">IF</option>
-        </select>
-      </div>
+          <div class="form-group">
+            <label for="color">Color</label>
+            <select id="color" name="color">
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+              <option value="H">H</option>
+              <option value="I">I</option>
+              <option value="J">J</option>
+            </select>
+          </div>
 
-      <div style="clear: both"></div>
-      <input type="submit" value="Submit" />
-    </form>
+          <div class="form-group">
+            <label for="clarity">Clarity</label>
+            <select id="clarity" name="clarity">
+              <option value="I1">I1</option>
+              <option value="SI2">SI2</option>
+              <option value="SI1">SI1</option>
+              <option value="VS2">VS2</option>
+              <option value="VS1">VS1</option>
+              <option value="VVS2">VVS2</option>
+              <option value="VVS1">VVS1</option>
+              <option value="IF">IF</option>
+            </select>
+          </div>
+
+          <input type="submit" value="Predict Price" />
+        </form>
+      </div>
+    </div>
+
+    <footer>&copy; 2025 Diamond Predictor | Built with ❤️ by NS Loni</footer>
   </body>
 </html>

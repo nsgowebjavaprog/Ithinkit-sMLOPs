@@ -1,1 +1,100 @@
-<h1>Dimond Price Will be {{final_result}}</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Diamond Price Prediction Result</title>
+    <style>
+      /* Background Gradient Animation */
+      @keyframes backgroundShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Fade-in and Scale animation for result */
+      @keyframes fadeInScale {
+        0% {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Reset and Base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(-45deg, #ff6a00, #ee0979, #00c3ff);
+        background-size: 600% 600%;
+        animation: backgroundShift 20s ease infinite;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      /* Container for result */
+      .result-container {
+        background-color: white;
+        padding: 40px 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+        animation: fadeInScale 1.5s ease-out;
+      }
+
+      .result-container h1 {
+        font-size: 32px;
+        color: #ee0979;
+        margin-bottom: 20px;
+      }
+
+      /* Style for the result value */
+      .price-result {
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+        background: #ee0979;
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        animation: fadeInScale 2s ease-in-out;
+      }
+
+      footer {
+        position: fixed;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="result-container">
+      <h1>Diamond Price Will be</h1>
+      <div class="price-result">{{ final_result }}</div>
+    </div>
+
+    <footer>&copy; 2025 Diamond Predictor | Built with ❤️ by NS Loni</footer>
+  </body>
+</html>
