@@ -42,3 +42,15 @@ In summary, **setup.cfg** is used by **setuptools** to configure the packaging a
 - **pylint**  
 - **flake8** (It is best because it contains 3 libraries: pylint, pycodestyle, and mccabe)  
 - **pycodestyle**
+
+
+
+
+
+
+
+
+
+********  test using python <copy relative path >
+
+********  for mlflow needed the run-->   mlflow ui
